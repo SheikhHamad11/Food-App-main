@@ -183,6 +183,7 @@ export default function Home() {
                         source={{uri: 'https://' + item?.day?.condition?.icon}}
                         className="w-11 h-11"
                       />
+                      <Text className="text-white">{item.date}</Text>
                       <Text className="text-white">{dayName}</Text>
                       <Text className="text-gray">
                         {item?.day?.condition?.text}

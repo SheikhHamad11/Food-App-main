@@ -6,11 +6,12 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "react-native run-android --terminal cmd",
     "test": "jest"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.23.1",
+    "@react-native-seoul/masonry-list": "^1.4.2",
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/native": "^6.1.9",
@@ -18,16 +19,18 @@
     "axios": "^1.6.8",
     "lodash": "^4.17.21",
     "nativewind": "^2.0.11",
-    "progress": "^2.0.3",
     "react": "18.2.0",
-    "react-native": "^0.73.2",
+    "react-native": "^0.73.6",
     "react-native-gesture-handler": "^2.14.1",
+    "react-native-masonry-list": "^2.16.1",
     "react-native-progress": "^5.0.1",
-    "react-native-reanimated": "^3.6.1",
+    "react-native-reanimated": "^3.8.1",
+    "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^4.8.2",
     "react-native-screens": "^3.29.0",
     "react-native-vector-icons": "^10.0.3",
-    "userland": "^0.4.1"
+    "react-native-webview": "^13.8.2",
+    "react-native-youtube-iframe": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
