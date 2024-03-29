@@ -16,6 +16,14 @@ import {useNavigation} from '@react-navigation/native';
 import Animated from 'react-native-reanimated';
 import axios from 'axios';
 import Loading from '../components/Loading';
+import YoutubeIframe from 'react-native-youtube-iframe';
+import {
+  ClockIcon,
+  FireIcon,
+  Square3Stack3DIcon,
+  UsersIcon,
+} from 'react-native-heroicons/outline';
+import {SparklesIcon as SparklesIconOutline} from 'react-native-heroicons/outline';
 export default function ReceipeDetails(props) {
   const [meals, setMeals] = useState([]);
   const navigation = useNavigation();
@@ -27,6 +35,16 @@ export default function ReceipeDetails(props) {
   useEffect(() => {
     getRecepiesDetail(item.idMeal);
   }, []);
+
+  const getYoutubeVideoId = url => {
+    const regex =
+      /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    if (match && match[1]) {
+      return match[1];
+    }
+    return null;
+  };
   const getRecepiesDetail = async id => {
     try {
       const response = await axios.get(
@@ -41,7 +59,7 @@ export default function ReceipeDetails(props) {
       console.log('error', error);
     }
   };
-  ('www.themealdb.com/api/json/v1/1/lookup.php?i=52772');
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -66,7 +84,7 @@ export default function ReceipeDetails(props) {
         <View className="px-4 justify-between space-y-4 pt-8">
           <View className="space-y-2">
             <Text
-              className="font-bold text-neutral-700"
+              className="font-extrabold text-neutral-700"
               style={{fontSize: hp(3)}}>
               {item?.strMeal}
             </Text>
@@ -76,6 +94,177 @@ export default function ReceipeDetails(props) {
               {meals?.strArea}
             </Text>
           </View>
+          <View className="flex-row justify-around">
+            <View className="bg-amber-300 rounded-full flex p-2">
+              <View className="bg-white rounded-full flex items-center justify-center p-1">
+                {/* <Icon name="heart" color="red" style={{fontSize: hp(3)}} /> */}
+                <ClockIcon size={hp(4)} strokeWidth={2.5} color="black" />
+              </View>
+              <View className="flex items-center space-y-1 py-2">
+                <Text
+                  style={{fontSize: hp(2)}}
+                  className="font-bold text-neutral-700">
+                  35
+                </Text>
+                <Text
+                  style={{fontSize: hp(1.3)}}
+                  className="font-bold text-neutral-700">
+                  mints
+                </Text>
+              </View>
+            </View>
+
+            <View className="bg-amber-300 rounded-full flex p-2">
+              <View className="bg-white rounded-full flex items-center justify-center p-1">
+                {/* <Icon name="user" color="black" style={{fontSize: hp(3)}} /> */}
+                <UsersIcon size={hp(4)} strokeWidth={2.5} color="black" />
+              </View>
+              <View className="flex items-center space-y-1 py-2">
+                <Text
+                  style={{fontSize: hp(2)}}
+                  className="font-bold text-neutral-700">
+                  3
+                </Text>
+                <Text
+                  style={{fontSize: hp(1.3)}}
+                  className="font-bold text-neutral-700">
+                  servings
+                </Text>
+              </View>
+            </View>
+
+            <View className="bg-amber-300 rounded-full flex p-2">
+              <View className="bg-white rounded-full flex items-center justify-center p-1">
+                <FireIcon size={hp(4)} strokeWidth={2.5} color="black" />
+              </View>
+              <View className="flex items-center space-y-1 py-2">
+                <Text
+                  style={{fontSize: hp(2)}}
+                  className="font-bold text-neutral-700">
+                  103
+                </Text>
+                <Text
+                  style={{fontSize: hp(1.3)}}
+                  className="font-bold text-neutral-700">
+                  cal
+                </Text>
+              </View>
+            </View>
+
+            <View className="bg-amber-300 rounded-full flex p-2">
+              <View className="bg-white rounded-full flex items-center justify-center p-1">
+                <Square3Stack3DIcon
+                  size={hp(4)}
+                  strokeWidth={2.5}
+                  color="black"
+                />
+              </View>
+              <View className="flex items-center space-y-1 py-2">
+                <Text
+                  style={{fontSize: hp(2)}}
+                  className="font-bold text-neutral-700"></Text>
+                <Text
+                  style={{fontSize: hp(1.3)}}
+                  className="font-bold text-neutral-700">
+                  Easy
+                </Text>
+              </View>
+            </View>
+          </View>
+          {/* Ingredients */}
+          <View className="space-y-4">
+            <View>
+              <Text
+                style={{fontSize: hp(3)}}
+                className="font-extrabold   text-neutral-700">
+                Ingredients
+              </Text>
+            </View>
+
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              1.
+              {meals?.strIngredient1}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              2.{meals?.strIngredient2}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              3.{meals?.strIngredient3}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              4.{meals?.strIngredient4}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              5.{meals?.strIngredient5}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              6.{meals?.strIngredient6}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              7.{meals?.strIngredient7}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              8.{meals?.strIngredient8}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              9.{meals?.strIngredient9}
+            </Text>
+            <Text
+              style={{fontSize: hp(1.6)}}
+              className="font-semibold   text-neutral-700">
+              10.{meals?.strIngredient10}
+            </Text>
+          </View>
+
+          {/* Instructions */}
+          <View className="space-y-4">
+            <Text
+              style={{fontSize: hp(3)}}
+              className="font-extrabold   text-neutral-700">
+              Instructions
+            </Text>
+            <View className="ml">
+              <Text style={{fontSize: hp(1.6)}} className="text-neutral-700">
+                {meals?.strInstructions}
+              </Text>
+            </View>
+          </View>
+
+          {/* Youtube video */}
+          {meals?.strYoutube && (
+            <View className="space-y-4">
+              <Text
+                style={{fontSize: hp(3)}}
+                className="font-extrabold   text-neutral-700">
+                Receipe Video
+              </Text>
+              <View>
+                <YoutubeIframe
+                  videoId={getYoutubeVideoId(meals.strYoutube)}
+                  // videoId="6R8ffRRJcrg"
+                  height={hp(30)}
+                />
+              </View>
+            </View>
+          )}
         </View>
       )}
 

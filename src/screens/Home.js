@@ -76,9 +76,9 @@ export default function Home({navigation}) {
 
         {/* greetings and puncth line */}
         <View className="mx-4 space-y-2">
-          <Text style={{fontSize: hp(1.7)}} className="text-neutral-600">
+          {/* <Text style={{fontSize: hp(1.7)}} className="text-neutral-600">
             Hello,Hamad!
-          </Text>
+          </Text> */}
           <View>
             <Text
               style={{fontSize: hp(3.8)}}
